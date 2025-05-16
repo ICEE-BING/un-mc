@@ -13,7 +13,7 @@ patchedDependencies:
     hash: ztv2kzvfqbmz5mcxzgjd7ae7qy
     path: patches/@rollup__plugin-terser.patch
   sql.js:
-    hash: wgh6gqspb2uzocip4iontd6e7i
+    hash: urvytwkalcv3rkpnwd4u7ph3b4
     path: patches/sql.js.patch
 
 importers:
@@ -82,7 +82,7 @@ importers:
         version: 1.89.0
       sql.js:
         specifier: ^1.13.0
-        version: 1.13.0(patch_hash=wgh6gqspb2uzocip4iontd6e7i)
+        version: 1.13.0(patch_hash=urvytwkalcv3rkpnwd4u7ph3b4)
       workbox-build:
         specifier: ^7.3.0
         version: 7.3.0(@types/babel__core@7.20.5)
@@ -7862,7 +7862,7 @@ snapshots:
 
   space-separated-tokens@1.1.5: {}
 
-  sql.js@1.13.0(patch_hash=wgh6gqspb2uzocip4iontd6e7i): {}
+  sql.js@1.13.0(patch_hash=urvytwkalcv3rkpnwd4u7ph3b4): {}
 
   stackback@0.0.2: {}
 

@@ -28,7 +28,9 @@ export function SDKVersion() {
           <h3 className="font-bold text-lg">详细信息</h3>
 
           <p>App: __APP_VERSION__</p>
-          <p>SDK: {sdkVersion}</p>
+          <p>
+            SDK: <span data-testid="sdk-version">{sdkVersion}</span>
+          </p>
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>关闭</button>

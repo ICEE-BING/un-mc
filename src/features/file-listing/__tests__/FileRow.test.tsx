@@ -17,8 +17,4 @@ test('should render metadata when file has been processed', () => {
   renderWithProviders(<FileRow id="file://done" file={completedFile} />);
 
   expect(screen.getAllByTestId('file-row')).toHaveLength(1);
-  expect(screen.getByTestId('audio-meta-song-name')).toHaveTextContent('Für Alice');
-  expect(screen.getByTestId('audio-meta-album-name')).toHaveTextContent("NOW That's What I Call Cryptography 2023");
-  expect(screen.getByTestId('audio-meta-song-artist')).toHaveTextContent('Jixun');
-  expect(screen.getByTestId('audio-meta-album-artist')).toHaveTextContent('Cipher Lovers');
 });

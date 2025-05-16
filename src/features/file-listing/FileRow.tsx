@@ -1,7 +1,5 @@
-import { useRef } from 'react';
 import { DecryptedAudioFile, deleteFile, ProcessState } from './fileListingSlice';
 import { useAppDispatch } from '~/hooks';
-import { AnimationDefinition } from 'framer-motion';
 import { FileError } from './FileError';
 import classNames from 'classnames';
 
@@ -11,20 +9,12 @@ interface FileRowProps {
 }
 
 export function FileRow({ id, file }: FileRowProps) {
-  // const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
   const dispatch = useAppDispatch();
   const isDecrypted = file.state === ProcessState.COMPLETE;
   const metadata = file.metadata;
 
   const nameWithoutExt = file.fileName.replace(/\.[a-z\d]{3,6}$/, '');
   const decryptedName = nameWithoutExt + '.' + file.ext;
-
-  const audioPlayerRef = useRef<HTMLAudioElement>(null);
-  const _onCollapseAnimationComplete = (definition: AnimationDefinition) => {
-    if (definition === 'exit') {
-      dispatch(deleteFile({ id }));
-    }
-  };
 
   return (
     <div className="card bg-base-100 shadow-sm w-full md:w-[30%] " data-testid="file-row">
@@ -45,7 +35,6 @@ export function FileRow({ id, file }: FileRowProps) {
               controls
               autoPlay={false}
               src={file.decrypted}
-              ref={audioPlayerRef}
             />
           )}
         </div>

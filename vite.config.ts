@@ -8,6 +8,7 @@ import wasm from 'vite-plugin-wasm';
 import replace from '@rollup/plugin-replace';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import { VitePWA } from 'vite-plugin-pwa';
+import tailwindcss from '@tailwindcss/vite';
 
 import { tryCommand } from './support/command';
 
@@ -43,6 +44,7 @@ export default defineConfig({
     exclude: ['@unlock-music/crypto', 'sql.js'],
   },
   plugins: [
+    tailwindcss(),
     replace({
       preventAssignment: true,
       values: {

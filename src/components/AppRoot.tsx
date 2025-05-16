@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router';
 import { MdSettings, MdHome, MdQuestionAnswer } from 'react-icons/md';
-import { ChakraProvider, Tabs, TabList, TabPanels, Tab, TabPanel, Icon, chakra } from '@chakra-ui/react';
 
 import { MainTab } from '~/tabs/MainTab';
 import { SettingsTab } from '~/tabs/SettingsTab';
 
 import { Provider } from 'react-redux';
-import { theme } from '~/theme';
 import { persistSettings } from '~/features/settings/persistSettings';
 import { setupStore } from '~/store';
 import { Footer } from '~/components/Footer';
@@ -15,43 +14,39 @@ import { FaqTab } from '~/tabs/FaqTab';
 // Private to this file only.
 const store = setupStore();
 
+const tabClassNames = ({ isActive }: { isActive: boolean }) => `tab ${isActive ? 'tab-active' : ''}`;
+
 export function AppRoot() {
   useEffect(() => persistSettings(store), []);
 
   return (
-    <ChakraProvider theme={theme}>
+    <BrowserRouter>
       <Provider store={store}>
-        <Tabs flex={1} minH={0} display="flex" flexDir="column">
-          <TabList justifyContent="center">
-            <Tab>
-              <Icon as={MdHome} mr="1" />
-              <chakra.span>应用</chakra.span>
-            </Tab>
-            <Tab>
-              <Icon as={MdSettings} mr="1" />
-              <chakra.span>设置</chakra.span>
-            </Tab>
-            <Tab>
-              <Icon as={MdQuestionAnswer} mr="1" />
-              <chakra.span>答疑</chakra.span>
-            </Tab>
-          </TabList>
+        <div role="tablist" className="tabs tabs-border w-full justify-center">
+          <NavLink to="/" role="tab" className={tabClassNames}>
+            <MdHome />
+            应用
+          </NavLink>
+          <NavLink to="/settings" role="tab" className={tabClassNames}>
+            <MdSettings />
+            设置
+          </NavLink>
+          <NavLink to="/questions" role="tab" className={tabClassNames}>
+            <MdQuestionAnswer />
+            答疑
+          </NavLink>
+        </div>
 
-          <TabPanels overflow="auto" minW={0} flexDir="column" flex={1} display="flex">
-            <TabPanel>
-              <MainTab />
-            </TabPanel>
-            <TabPanel flex={1} display="flex">
-              <SettingsTab />
-            </TabPanel>
-            <TabPanel>
-              <FaqTab />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+        <main className="flex-1 flex justify-center">
+          <Routes>
+            <Route path="/" Component={MainTab} />
+            <Route path="/settings" Component={SettingsTab} />
+            <Route path="/questions" Component={FaqTab} />
+          </Routes>
+        </main>
 
         <Footer />
       </Provider>
-    </ChakraProvider>
+    </BrowserRouter>
   );
 }

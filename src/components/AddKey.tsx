@@ -1,16 +1,4 @@
-import {
-  Button,
-  ButtonGroup,
-  HStack,
-  Icon,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-} from '@chakra-ui/react';
-import { MdAdd, MdDeleteForever, MdExpandMore, MdFileUpload } from 'react-icons/md';
+import { MdAdd, MdDeleteForever, MdFileUpload } from 'react-icons/md';
 
 export interface AddKeyProps {
   addKey: () => void;
@@ -20,28 +8,20 @@ export interface AddKeyProps {
 
 export function AddKey({ addKey, importKeyFromFile, clearKeys }: AddKeyProps) {
   return (
-    <HStack pb={2} pt={2}>
-      <ButtonGroup isAttached colorScheme="purple" variant="outline">
-        <Button onClick={addKey} leftIcon={<Icon as={MdAdd} />}>
-          添加一条密钥
-        </Button>
-        <Menu>
-          <MenuButton as={IconButton} icon={<MdExpandMore />}></MenuButton>
-          <MenuList>
-            {importKeyFromFile && (
-              <MenuItem onClick={importKeyFromFile} icon={<Icon as={MdFileUpload} boxSize={5} />}>
-                从文件导入密钥…
-              </MenuItem>
-            )}
-            {importKeyFromFile && clearKeys && <MenuDivider />}
-            {clearKeys && (
-              <MenuItem color="red" onClick={clearKeys} icon={<Icon as={MdDeleteForever} boxSize={5} />}>
-                清空密钥
-              </MenuItem>
-            )}
-          </MenuList>
-        </Menu>
-      </ButtonGroup>
-    </HStack>
+    <div className="flex flex-row justify-between items-center">
+      <div className="join">
+        <button className="btn join-item" onClick={addKey}>
+          <MdAdd /> 添加一条
+        </button>
+        <button className="btn join-item" onClick={importKeyFromFile}>
+          <MdFileUpload />
+          导入数据库…
+        </button>
+        <button className="btn btn-error join-item" onClick={clearKeys}>
+          <MdDeleteForever />
+          清空密钥
+        </button>
+      </div>
+    </div>
   );
 }

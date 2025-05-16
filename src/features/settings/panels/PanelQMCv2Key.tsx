@@ -1,31 +1,9 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Checkbox,
-  Flex,
-  Heading,
-  HStack,
-  Icon,
-  IconButton,
-  List,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  Select,
-  Text,
-  Tooltip,
-  useToast,
-} from '@chakra-ui/react';
+import { Select, useToast } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { qmc2AddKey, qmc2AllowFuzzyNameSearch, qmc2ClearKeys, qmc2ImportKeys } from '../settingsSlice';
 import { selectStagingQMCv2Settings } from '../settingsSelector';
 import React, { useState } from 'react';
-import { MdAdd, MdDeleteForever, MdExpandMore, MdFileUpload } from 'react-icons/md';
 import { QMCv2EKeyItem } from './QMCv2/QMCv2EKeyItem';
-import { InfoOutlineIcon } from '@chakra-ui/icons';
 import { ImportSecretModal } from '~/components/ImportSecretModal';
 import { StagingQMCv2Key } from '../keyFormats';
 import { DatabaseKeyExtractor } from '~/util/DatabaseKeyExtractor';
@@ -33,8 +11,11 @@ import { parseAndroidQmEKey } from '~/util/mmkv/qm';
 import { getFileName } from '~/util/pathHelper';
 import { QMCv2QQMusicAllInstructions } from './QMCv2/QMCv2QQMusicAllInstructions';
 import { QMCv2DoubanAllInstructions } from './QMCv2/QMCv2DoubanAllInstructions';
+import { AddKey } from '~/components/AddKey';
+import { Dialog } from '~/components/Dialog';
 
 export function PanelQMCv2Key() {
+  const [showFuzzyNameSearchInfo, setShowFuzzyNameSearchInfo] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch();
   const { keys: qmc2Keys, allowFuzzyNameSearch } = useSelector(selectStagingQMCv2Settings);
@@ -93,73 +74,64 @@ export function PanelQMCv2Key() {
   };
 
   return (
-    <Flex minH={0} flexDir="column" flex={1}>
-      <Heading as="h2" size="lg">
-        QMCv2 解密密钥
-      </Heading>
+    <div className="flex min-h-0 flex-col flex-1">
+      <h2 className="text-2xl font-bold">QMCv2 解密密钥</h2>
 
-      <Text>
-        QQ 音乐、豆瓣 FM 目前采用的加密方案（QMCv2）。在使用「QQ 音乐」安卓、Mac 或 iOS 客户端，以及在使用「豆瓣
-        FM」安卓客户端的情况下，其「离线加密文件」对应的「密钥」储存在独立的数据库文件内。
-      </Text>
+      <p>
+        <span>QQ 音乐、豆瓣 FM 目前采用的加密方案（QMCv2）。</span>
+        <span>
+          在使用「QQ 音乐」安卓、Mac 或 iOS 客户端，以及在使用「豆瓣 FM」安卓客户端的情况下，
+          其「离线加密文件」对应的「密钥」储存在独立的数据库文件内。
+        </span>
+      </p>
 
-      <HStack pb={2} pt={2}>
-        <ButtonGroup isAttached colorScheme="purple" variant="outline">
-          <Button onClick={addKey} leftIcon={<Icon as={MdAdd} />}>
-            添加一条密钥
-          </Button>
-          <Menu>
-            <MenuButton as={IconButton} icon={<MdExpandMore />}></MenuButton>
-            <MenuList>
-              <MenuItem onClick={() => setShowImportModal(true)} icon={<Icon as={MdFileUpload} boxSize={5} />}>
-                从文件导入密钥…
-              </MenuItem>
-              <MenuDivider />
-              <MenuItem color="red" onClick={clearAll} icon={<Icon as={MdDeleteForever} boxSize={5} />}>
-                清空密钥
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </ButtonGroup>
+      <div className="flex flex-row gap-2 items-center">
+        <label className="label">
+          <input
+            className="checkbox"
+            type="checkbox"
+            checked={allowFuzzyNameSearch}
+            onChange={handleAllowFuzzyNameSearchCheckbox}
+          />
+          允许匹配相似文件名
+        </label>
+        <button className="btn btn-info btn-sm" type="button" onClick={() => setShowFuzzyNameSearchInfo(true)}>
+          这是什么?
+        </button>
+        <Dialog
+          closeButton
+          backdropClose
+          show={showFuzzyNameSearchInfo}
+          onClose={() => setShowFuzzyNameSearchInfo(false)}
+          title="莱文斯坦距离"
+        >
+          <p>若文件名匹配失败，则使用相似文件名的密钥。</p>
+          <p>
+            该匹配使用「
+            <ruby>
+              莱文斯坦距离
+              <rp> (</rp>
+              <rt>Levenshtein distance</rt>
+              <rp>)</rp>
+            </ruby>
+            」算法来计算文件名的相似程度。
+          </p>
+          <p>若密钥数量过多，匹配时可能会造成浏览器卡顿或无响应一段时间。</p>
+          <p>若不确定，请勾选该项。</p>
+        </Dialog>
+      </div>
 
-        <HStack>
-          <Checkbox isChecked={allowFuzzyNameSearch} onChange={handleAllowFuzzyNameSearchCheckbox}>
-            <Text>匹配相似文件名</Text>
-          </Checkbox>
-          <Tooltip
-            hasArrow
-            closeOnClick={false}
-            label={
-              <Box>
-                <Text>若文件名匹配失败，则使用相似文件名的密钥。</Text>
-                <Text>
-                  使用「
-                  <ruby>
-                    莱文斯坦距离
-                    <rp> (</rp>
-                    <rt>Levenshtein distance</rt>
-                    <rp>)</rp>
-                  </ruby>
-                  」算法计算相似程度。
-                </Text>
-                <Text>若密钥数量过多，匹配时可能会造成浏览器卡顿或无响应一段时间。</Text>
-                <Text>若不确定，请勾选该项。</Text>
-              </Box>
-            }
-          >
-            <InfoOutlineIcon />
-          </Tooltip>
-        </HStack>
-      </HStack>
+      <h3 className="mt-2 text-1xl font-bold">密钥管理</h3>
+      <AddKey addKey={addKey} importKeyFromFile={() => setShowImportModal(true)} clearKeys={clearAll} />
 
-      <Box flex={1} minH={0} overflow="auto" pr="4">
-        <List spacing={3}>
+      <div className="flex-1 min-h-0 overflow-auto pr-4">
+        <ul className="list bg-base-100 rounded-box shadow-md">
           {qmc2Keys.map(({ id, ekey, name }, i) => (
             <QMCv2EKeyItem key={id} id={id} ekey={ekey} name={name} i={i} />
           ))}
-        </List>
-        {qmc2Keys.length === 0 && <Text>还没有密钥。</Text>}
-      </Box>
+        </ul>
+        {qmc2Keys.length === 0 && <p className="p-4 pb-2 text-xs tracking-wide">还没有密钥。</p>}
+      </div>
 
       <ImportSecretModal
         clientName={
@@ -181,6 +153,6 @@ export function PanelQMCv2Key() {
         {secretType === 'qm' && <QMCv2QQMusicAllInstructions />}
         {secretType === 'douban' && <QMCv2DoubanAllInstructions />}
       </ImportSecretModal>
-    </Flex>
+    </div>
   );
 }

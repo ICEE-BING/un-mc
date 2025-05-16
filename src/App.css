@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+@plugin "daisyui";
+@theme {
+  --font-display:
+    system-ui, Sarasa UI SC, Source Han Sans CN, Noto Sans CJK SC, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  --font-mono:
+    ui-monospace, Consolas, Sarasa Mono CJK SC, Sarasa UI SC, Source Han Sans CN, Noto Sans CJK SC, Microsoft YaHei UI,
+    monospace, Apple Color Emoji, Segoe UI Emoji;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

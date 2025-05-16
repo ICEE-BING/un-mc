@@ -19,7 +19,6 @@ import {
   TabPanels,
   Tabs,
   Text,
-  useBreakpointValue,
   useToast,
   VStack,
 } from '@chakra-ui/react';
@@ -47,11 +46,7 @@ const TABS: { name: string; Tab: FC }[] = [
 export function Settings() {
   const toast = useToast();
   const dispatch = useAppDispatch();
-  const isLargeWidthDevice =
-    useBreakpointValue({
-      base: false,
-      lg: true,
-    }) ?? false;
+  const isLargeWidthDevice = false;
 
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabChange = (idx: number) => {

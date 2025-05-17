@@ -11,6 +11,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import tailwindcss from '@tailwindcss/vite';
 
 import { tryCommand } from './support/command';
+import { base64Loader } from './support/b64-loader';
 
 const projectRoot = url.fileURLToPath(new URL('.', import.meta.url));
 const pkg = JSON.parse(fs.readFileSync(projectRoot + '/package.json', 'utf-8'));
@@ -45,6 +46,7 @@ export default defineConfig({
   },
   plugins: [
     tailwindcss(),
+    base64Loader,
     replace({
       preventAssignment: true,
       values: {

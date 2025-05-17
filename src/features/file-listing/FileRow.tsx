@@ -26,7 +26,7 @@ export function FileRow({ id, file }: FileRowProps) {
           {metadata?.name ?? nameWithoutExt}
         </h2>
 
-        <div>
+        <div className="w-full grow">
           {file.state === ProcessState.ERROR && <FileError error={file.errorMessage} code={file.errorCode} />}
           {isDecrypted && (
             <audio

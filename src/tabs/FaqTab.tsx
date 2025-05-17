@@ -1,5 +1,4 @@
 import { FC, Fragment } from 'react';
-import { Center, Container, Heading, Link, ListItem, UnorderedList } from '@chakra-ui/react';
 import { Header3 } from '~/components/HelpText/Headers';
 import { KuwoFAQ } from '~/faq/KuwoFAQ';
 import { OtherFAQ } from '~/faq/OtherFAQ';
@@ -21,24 +20,24 @@ const faqEntries: FAQEntry[] = [
 
 export function FaqTab() {
   return (
-    <Container pb={10} maxW="container.md">
-      <Center>
-        <Heading as="h2">常见问题解答</Heading>
-      </Center>
+    <section className="container pb-10">
+      <h2 className="text-3xl font-bold text-center">常见问题解答</h2>
       <Header3>答疑目录</Header3>
-      <UnorderedList>
+      <ul className="list-disc list-inside">
         {faqEntries.map(({ id, title }) => (
-          <ListItem key={id}>
-            <Link href={`#faq-${id}`}>{title}</Link>
-          </ListItem>
+          <li key={id}>
+            <a className="link link-info no-underline" href={`#faq-${id}`}>
+              {title}
+            </a>
+          </li>
         ))}
-      </UnorderedList>
+      </ul>
       {faqEntries.map(({ id, title, Help }) => (
         <Fragment key={id}>
           <Header3 id={`faq-${id}`}>{title}</Header3>
           <Help />
         </Fragment>
       ))}
-    </Container>
+    </section>
   );
 }

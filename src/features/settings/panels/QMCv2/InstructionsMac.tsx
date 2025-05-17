@@ -1,4 +1,4 @@
-import { Heading, Text, Code, Kbd, OrderedList, ListItem, Link } from '@chakra-ui/react';
+import { Heading, Text, Code, OrderedList, ListItem, Link } from '@chakra-ui/react';
 import { FilePathBlock } from '~/components/FilePathBlock';
 import { MacCommandKey } from '~/components/Key/MacCommandKey';
 import { ShiftKey } from '~/components/Key/ShiftKey';
@@ -42,7 +42,7 @@ export function InstructionsMac() {
             {' + '}
             <MacCommandKey />
             {' + '}
-            <Kbd>{'G'}</Kbd>」组合键打开「路径输入框」
+            <kbd className="kbd">{'G'}</kbd>」组合键打开「路径输入框」
           </Text>
         </ListItem>
         <ListItem>

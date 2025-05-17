@@ -1,15 +1,12 @@
-import { Icon, Kbd } from '@chakra-ui/react';
 import { BsCommand } from 'react-icons/bs';
+import { Ruby } from '../Ruby';
 
 export function MacCommandKey() {
   return (
-    <ruby>
-      <Kbd>
-        <Icon as={BsCommand} />
-      </Kbd>
-      <rp> (</rp>
-      <rt>command</rt>
-      <rp>)</rp>
-    </ruby>
+    <Ruby caption="command">
+      <kbd className="kbd">
+        <BsCommand className="text-sm" />
+      </kbd>
+    </Ruby>
   );
 }

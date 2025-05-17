@@ -1,6 +1,6 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
-export function FilePathBlock({ children }: { children: React.ReactNode }) {
+export function FilePathBlock({ children }: { children: ReactNode }) {
   return (
     <pre className="whitespace-pre-wrap break-all">
       <code>{children}</code>

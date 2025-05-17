@@ -7,7 +7,7 @@ export type ExtLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 export function ExtLink({ className, icon = true, children, ...props }: ExtLinkProps) {
   return (
-    <a rel="noreferrer noopener nofollow" target="_blank" className={`link  ${className}`} {...props}>
+    <a rel="noreferrer noopener nofollow" target="_blank" className={`link ${className}`} {...props}>
       {children}
       {icon && <FiExternalLink className="inline size-sm ml-1" />}
     </a>

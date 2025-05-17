@@ -1,5 +1,9 @@
 @import 'tailwindcss';
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes:
+    emerald --default,
+    dracula --prefersdark;
+}
 @theme {
   --font-display:
     system-ui, Sarasa UI SC, Source Han Sans CN, Noto Sans CJK SC, sans-serif, Apple Color Emoji, Segoe UI Emoji;

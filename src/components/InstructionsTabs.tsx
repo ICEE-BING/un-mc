@@ -13,21 +13,18 @@ export interface InstructionsTabsProps {
 export function InstructionsTabs({ tabs }: InstructionsTabsProps) {
   const id = useId();
   return (
-    <div className="tabs tabs-lift h-[20rem] pb-4">
+    <div className="tabs tabs-lift max-h-[32rem] pb-4">
       {tabs.map(({ id: _tabId, label, content }, index) => (
         <Fragment key={_tabId}>
           <label className="tab">
             <input type="radio" name={id} defaultChecked={index === 0} />
             {label}
           </label>
-          <div className="tab-content border-base-300 bg-base-100 px-4 py-2 overflow-y-auto">{content}</div>
+          <div className="tab-content border-base-300 bg-base-100 px-4 py-2 overflow-y-auto max-h-[30rem]">
+            {content}
+          </div>
         </Fragment>
       ))}
-      {/*<label className="tab">*/}
-      {/*  <input type="radio" name={id} />a*/}
-      {/*</label>*/}
-      {/*<div className="tab-content border-base-300 bg-base-100 px-4 py-2 overflow-y-auto"></div>*/}
-      {/*<input type="radio" name={id} className="tab" aria-label="安卓" defaultChecked />*/}
     </div>
   );
 }

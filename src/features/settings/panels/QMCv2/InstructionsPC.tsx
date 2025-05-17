@@ -1,10 +1,16 @@
-import { Text } from '@chakra-ui/react';
-
 export function InstructionsPC() {
   return (
     <>
-      <Text>使用 Windows 19.51 或更低版本下载的歌曲文件无需密钥。</Text>
-      <Text>使用 Windows 19.57 或更高版本下载的歌曲文件需要导入密钥，但方法尚未公开。</Text>
+      <p>
+        使用 <span className="text-primary">19.51 或更低版本</span>下载的歌曲文件
+        <mark>无需密钥</mark>。
+      </p>
+      <p className="mt-2">
+        使用 <span className="text-error">19.57 或更高版本</span>下载的歌曲文件
+        <mark>需要导入密钥</mark>。
+        <br />
+        目前未公开密钥获取方式。
+      </p>
     </>
   );
 }

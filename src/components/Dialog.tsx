@@ -27,7 +27,7 @@ export function Dialog({ closeButton, backdropClose, title, children, show, onCl
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
         )}
-        <h3 className="font-bold text-lg">{title}</h3>
+        <h3 className="font-bold text-lg pb-3">{title}</h3>
         {children}
       </div>
       {backdropClose && (

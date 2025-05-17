@@ -1,4 +1,4 @@
-import { Select, useToast } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { qmc2AddKey, qmc2AllowFuzzyNameSearch, qmc2ClearKeys, qmc2ImportKeys } from '../settingsSlice';
 import { selectStagingQMCv2Settings } from '../settingsSelector';
@@ -12,10 +12,11 @@ import { getFileName } from '~/util/pathHelper';
 import { QMCv2QQMusicAllInstructions } from './QMCv2/QMCv2QQMusicAllInstructions';
 import { QMCv2DoubanAllInstructions } from './QMCv2/QMCv2DoubanAllInstructions';
 import { AddKey } from '~/components/AddKey';
-import { Dialog } from '~/components/Dialog';
+import { InfoModal } from '~/components/InfoModal.tsx';
+import { Ruby } from '~/components/Ruby.tsx';
+import { ExtLink } from '~/components/ExtLink.tsx';
 
 export function PanelQMCv2Key() {
-  const [showFuzzyNameSearchInfo, setShowFuzzyNameSearchInfo] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch();
   const { keys: qmc2Keys, allowFuzzyNameSearch } = useSelector(selectStagingQMCv2Settings);
@@ -74,18 +75,13 @@ export function PanelQMCv2Key() {
   };
 
   return (
-    <div className="flex min-h-0 flex-col flex-1">
+    <>
       <h2 className="text-2xl font-bold">QMCv2 解密密钥</h2>
 
-      <p>
-        <span>QQ 音乐、豆瓣 FM 目前采用的加密方案（QMCv2）。</span>
-        <span>
-          在使用「QQ 音乐」安卓、Mac 或 iOS 客户端，以及在使用「豆瓣 FM」安卓客户端的情况下，
-          其「离线加密文件」对应的「密钥」储存在独立的数据库文件内。
-        </span>
-      </p>
+      <p>QQ 音乐、豆瓣 FM 目前采用的加密方案（QMCv2）。</p>
+      <p>「QQ 音乐」安卓、Mac 或 iOS 客户端，或「豆瓣 FM」安卓客户端会将密钥存储在外部的数据库文件内。</p>
 
-      <div className="flex flex-row gap-2 items-center">
+      <div className="flex flex-row gap-2 items-center my-2">
         <label className="label">
           <input
             className="checkbox"
@@ -95,56 +91,51 @@ export function PanelQMCv2Key() {
           />
           允许匹配相似文件名
         </label>
-        <button className="btn btn-info btn-sm" type="button" onClick={() => setShowFuzzyNameSearchInfo(true)}>
-          这是什么?
-        </button>
-        <Dialog
-          closeButton
-          backdropClose
-          show={showFuzzyNameSearchInfo}
-          onClose={() => setShowFuzzyNameSearchInfo(false)}
+        <InfoModal
           title="莱文斯坦距离"
+          description={
+            <div>
+              <p>若文件名匹配失败，则使用相似文件名的密钥。</p>
+              <p>
+                该匹配使用「
+                <ExtLink href="https://zh.wikipedia.org/zh-cn/%E8%90%8A%E6%96%87%E6%96%AF%E5%9D%A6%E8%B7%9D%E9%9B%A2">
+                  <Ruby caption="Levenshtein distance">莱文斯坦距离</Ruby>
+                </ExtLink>
+                」算法来计算文件名的相似程度。
+              </p>
+              <p>若密钥数量过多，匹配时可能会造成浏览器卡顿或无响应一段时间。</p>
+              <p>若不确定，请勾选该项。</p>
+            </div>
+          }
         >
-          <p>若文件名匹配失败，则使用相似文件名的密钥。</p>
-          <p>
-            该匹配使用「
-            <ruby>
-              莱文斯坦距离
-              <rp> (</rp>
-              <rt>Levenshtein distance</rt>
-              <rp>)</rp>
-            </ruby>
-            」算法来计算文件名的相似程度。
-          </p>
-          <p>若密钥数量过多，匹配时可能会造成浏览器卡顿或无响应一段时间。</p>
-          <p>若不确定，请勾选该项。</p>
-        </Dialog>
+          这是什么?
+        </InfoModal>
       </div>
 
       <h3 className="mt-2 text-1xl font-bold">密钥管理</h3>
       <AddKey addKey={addKey} importKeyFromFile={() => setShowImportModal(true)} clearKeys={clearAll} />
 
-      <div className="flex-1 min-h-0 overflow-auto pr-4">
-        <ul className="list bg-base-100 rounded-box shadow-md">
-          {qmc2Keys.map(({ id, ekey, name }, i) => (
-            <QMCv2EKeyItem key={id} id={id} ekey={ekey} name={name} i={i} />
-          ))}
-        </ul>
-        {qmc2Keys.length === 0 && <p className="p-4 pb-2 text-xs tracking-wide">还没有密钥。</p>}
+      <div className="flex-1 min-h-0 overflow-auto pr-4 pt-3">
+        {qmc2Keys.length > 0 && (
+          <ul className="list bg-base-100 rounded-box shadow-md border border-base-300">
+            {qmc2Keys.map(({ id, ekey, name }, i) => (
+              <QMCv2EKeyItem key={id} id={id} ekey={ekey} name={name} i={i} />
+            ))}
+          </ul>
+        )}
+        {qmc2Keys.length === 0 && <p className="p-4 pb-2 tracking-wide">还没有密钥。</p>}
       </div>
 
       <ImportSecretModal
         clientName={
-          <Select
+          <select
             value={secretType}
             onChange={(e) => setSecretType(e.target.value as 'qm' | 'douban')}
-            variant="flushed"
-            display="inline"
-            css={{ paddingLeft: '0.75rem', width: 'auto' }}
+            className="inline mx-1 px-1 border-b border-accent/50 bg-base-100"
           >
             <option value="qm">QQ 音乐</option>
             <option value="douban">豆瓣 FM</option>
-          </Select>
+          </select>
         }
         show={showImportModal}
         onClose={() => setShowImportModal(false)}
@@ -153,6 +144,6 @@ export function PanelQMCv2Key() {
         {secretType === 'qm' && <QMCv2QQMusicAllInstructions />}
         {secretType === 'douban' && <QMCv2DoubanAllInstructions />}
       </ImportSecretModal>
-    </div>
+    </>
   );
 }

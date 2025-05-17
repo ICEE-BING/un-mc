@@ -10,6 +10,8 @@ import { persistSettings } from '~/features/settings/persistSettings';
 import { setupStore } from '~/store';
 import { Footer } from '~/components/Footer';
 import { FaqTab } from '~/tabs/FaqTab';
+import { SETTINGS_TABS } from '~/features/settings/settingsTabs';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 // Private to this file only.
 const store = setupStore();
@@ -40,10 +42,25 @@ export function AppRoot() {
         <main className="flex-1 flex justify-center">
           <Routes>
             <Route path="/" Component={MainTab} />
-            <Route path="/settings" Component={SettingsTab} />
+            <Route path="/settings" Component={SettingsTab}>
+              {Object.entries(SETTINGS_TABS).map(([key, { Tab }]) => (
+                <Route key={key} path={key} Component={Tab} />
+              ))}
+            </Route>
             <Route path="/questions" Component={FaqTab} />
           </Routes>
         </main>
+
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          newestOnTop
+          closeOnClick={false}
+          pauseOnFocusLoss
+          draggable
+          theme="colored"
+          transition={Bounce}
+        />
 
         <Footer />
       </Provider>

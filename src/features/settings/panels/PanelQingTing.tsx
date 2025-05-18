@@ -56,10 +56,7 @@ export function PanelQingTing() {
 
   return (
     <div className="min-h-0 flex-col grow px-1">
-      <h2 className="text-2xl font-bold mb-4">
-        <VQuote>蜻蜓 FM</VQuote>
-        设备密钥
-      </h2>
+      <h2 className="text-2xl font-bold mb-4">蜻蜓 FM</h2>
 
       <p>
         <VQuote>蜻蜓 FM</VQuote>的安卓版本需要获取设备密钥，并以此来生成解密密钥。

@@ -26,9 +26,7 @@ export function InstructionsPC() {
         来加密储存密钥。
       </p>
       <p>该密钥数据库通常位于下述路径：</p>
-      <p className="flex items-center gap-1">
-        <FilePathBlock>{DB_PATH}</FilePathBlock>
-      </p>
+      <FilePathBlock>{DB_PATH}</FilePathBlock>
 
       <h3 className="font-bold text-xl mt-4">导入密钥</h3>
       <ol className="list-decimal pl-6">

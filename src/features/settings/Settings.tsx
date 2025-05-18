@@ -5,6 +5,8 @@ import { NavLink, Outlet } from 'react-router';
 import { SETTINGS_TABS } from '~/features/settings/settingsTabs.tsx';
 import { MdOutlineSettingsBackupRestore } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import { ResponsiveNav } from '../nav/ResponsiveNav';
+import classNames from 'classnames';
 
 export function Settings() {
   const dispatch = useAppDispatch();
@@ -25,23 +27,37 @@ export function Settings() {
   };
   const isSettingsNotSaved = useAppSelector(selectIsSettingsNotSaved);
 
+  const tabClassNames = ({ isActive }: { isActive: boolean }) =>
+    classNames(
+      'link inline-flex text-nowrap mb-[-2px] no-underline w-full',
+      'border-b-2 md:border-b-0 md:border-r-2',
+      'tab md:grow',
+      {
+        'tab-active bg-accent/10 border-accent': isActive,
+      },
+    );
+
   return (
     <div className="flex flex-col flex-1 container w-full">
-      <div role="tablist" className="tabs tabs-border w-full justify-center gap-2">
-        {Object.entries(SETTINGS_TABS).map(([id, { name }]) => (
-          <NavLink className="link link-neutral" key={id} to={`/settings/${id}`} role="tab">
-            {name}
-          </NavLink>
-        ))}
-      </div>
-
-      {/* TODO: ensure this flex div does not overflow */}
-      <div className="flex flex-1 flex-col h-full overflow-auto">
+      <ResponsiveNav
+        className="grow h-full overflow-auto"
+        contentClassName="flex flex-col overflow-auto"
+        navigationClassName="overflow-x-auto pb-[2px] md:pb-0 h-full md:items-center [&]:md:flex"
+        navigation={
+          <div role="tablist" className="tabs gap-1 flex-nowrap md:flex-col grow items-center">
+            {Object.entries(SETTINGS_TABS).map(([id, { name }]) => (
+              <NavLink className={tabClassNames} key={id} to={`/settings/${id}`} role="tab">
+                {name}
+              </NavLink>
+            ))}
+          </div>
+        }
+      >
         <Outlet />
-      </div>
+      </ResponsiveNav>
 
-      <footer className="flex flex-row gap-2 w-full py-3">
-        <div className="grow">
+      <footer className="flex flex-row gap-2 w-full p-2 border-t border-base-200 bg-base-100">
+        <div className="grow inline-flex items-center">
           {isSettingsNotSaved ? (
             <span>
               有未储存的更改，<span className="text-red-600">设定将在保存后生效</span>
@@ -64,39 +80,6 @@ export function Settings() {
           </button>
         </div>
       </footer>
-
-      {/*        <VStack mt="4" alignItems="flex-start" w="full">*/}
-      {/*          <Flex flexDir="row" gap="2" w="full">*/}
-      {/*            <Center>*/}
-      {/*              {isSettingsNotSaved ? (*/}
-      {/*                <Box color="gray">*/}
-      {/*                  有未储存的更改{' '}*/}
-      {/*                  <chakra.span color="red" wordBreak="keep-all">*/}
-      {/*                    设定将在保存后生效*/}
-      {/*                  </chakra.span>*/}
-      {/*                </Box>*/}
-      {/*              ) : (*/}
-      {/*                <Box color="gray">设定将在保存后生效</Box>*/}
-      {/*              )}*/}
-      {/*            </Center>*/}
-      {/*            <Spacer />*/}
-      {/*            <HStack gap="2" justifyContent="flex-end">*/}
-      {/*              <IconButton*/}
-      {/*                icon={<Icon as={MdOutlineSettingsBackupRestore} />}*/}
-      {/*                onClick={handleResetSettings}*/}
-      {/*                colorScheme="red"*/}
-      {/*                variant="ghost"*/}
-      {/*                title="放弃未储存的更改，将设定还原未储存前的状态。"*/}
-      {/*                aria-label="放弃未储存的更改"*/}
-      {/*              />*/}
-      {/*              <Button onClick={handleApplySettings}>保存</Button>*/}
-      {/*            </HStack>*/}
-      {/*          </Flex>*/}
-      {/*        </VStack>*/}
-      {/*      </Flex>*/}
-      {/*    ))}*/}
-      {/*  </TabPanels>*/}
-      {/*</Tabs>*/}
     </div>
   );
 }

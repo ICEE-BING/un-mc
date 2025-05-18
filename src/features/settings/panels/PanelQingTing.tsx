@@ -75,7 +75,7 @@ export function PanelQingTing() {
             value={secretKey}
             onChange={handleDataInput}
           />
-          <p className="label">
+          <p className="label flex-wrap">
             粘贴含有设备密钥的信息的内容时将自动提取密钥（如通过
             <ExtLink href={QTFM_DEVICE_ID_URL}>
               <code>qtfm-device-id</code>
@@ -91,8 +91,15 @@ export function PanelQingTing() {
           <p>
             下载的文件位于
             <VQuote>
-              <code>
-                <HiWord>[内部储存]</HiWord>/Android/data/fm.qingting.qtradio/files/Music/
+              <code className="break-words">
+                <HiWord>[内部储存]</HiWord>/<wbr />
+                Android/
+                <wbr />
+                data/
+                <wbr />
+                fm.qingting.qtradio/
+                <wbr />
+                files/Music/
               </code>
             </VQuote>
           </p>

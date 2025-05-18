@@ -11,7 +11,7 @@ export function KuwoFAQ() {
     <>
       <Header4>解锁失败</Header4>
       <SegmentTryOfficialPlayer />
-      <p>
+      <p className="my-4">
         日前，仅<HiWord>手机客户端</HiWord>下载的
         <VQuote>
           <strong>至臻全景声</strong>
@@ -22,10 +22,10 @@ export function KuwoFAQ() {
         </VQuote>
         音质的音乐文件采用新版加密。
       </p>
-      <p>其他音质目前不需要提取密钥。</p>
-      <p>PC平台暂未推出使用新版加密的音质。</p>
+      <p className="my-4">其他音质目前不需要提取密钥。</p>
+      <p className="my-4">PC平台暂未推出使用新版加密的音质。</p>
 
-      <div className="alert alert-warning">
+      <div className="alert alert-warning mb-4">
         <RiErrorWarningLine className="text-2xl" />
         <div>
           <p>安卓用户提取密钥需要 root 权限，或注入文件提供器。</p>

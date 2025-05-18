@@ -48,6 +48,11 @@ export function AdbInstructionTemplate({ dir, file, platform }: AdbInstructionTe
         <SyntaxHighlighter language={language} style={hljsStyleGitHub}>
           {command}
         </SyntaxHighlighter>
+        <br />※ 安卓模拟器可能需要额外操作，如
+        <ExtLink className="text-nowrap" href="https://g.126.fm/04jewvw">
+          网易 MuMu 模拟器
+        </ExtLink>
+        需要提前使用 <code>adb connect ...</code> 指令连接模拟器。详细请参考官方说明文档并调整上述脚本。
       </li>
       <li>
         提交当前目录下的 <code>{file}</code> 文件。

@@ -10,7 +10,7 @@ export function KugouFAQ() {
       <p>
         酷狗现在对部分用户推送了 <code>kgg</code> 加密格式（安卓、Windows 客户端）。
       </p>
-      <p>根据平台不同，你需要提取密钥数据库。</p>
+      <p className="my-4">根据平台不同，你需要提取密钥数据库。</p>
 
       <div className="p-2 @container">
         <div className="alert alert-warning">

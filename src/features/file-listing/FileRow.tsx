@@ -11,31 +11,23 @@ interface FileRowProps {
 export function FileRow({ id, file }: FileRowProps) {
   const dispatch = useAppDispatch();
   const isDecrypted = file.state === ProcessState.COMPLETE;
-  const metadata = file.metadata;
 
-  const nameWithoutExt = file.fileName.replace(/\.[a-z\d]{3,6}$/, '');
-  const decryptedName = nameWithoutExt + '.' + file.ext;
+  const decryptedName = file.cleanName + '.' + file.ext;
 
   return (
     <div className="card bg-base-100 shadow-sm w-full md:w-[30%] " data-testid="file-row">
       <div className="card-body items-center text-center px-2">
-        <h2
-          className="card-title overflow-hidden text-ellipsis block max-w-full whitespace-nowrap"
-          data-testid="audio-meta-song-name"
-        >
-          {metadata?.name ?? nameWithoutExt}
+        <h2 className="card-title max-w-full whitespace-nowrap flex gap-0" data-testid="audio-meta-song-name">
+          <span className="grow overflow-hidden text-ellipsis" title={decryptedName}>
+            {file.cleanName}
+          </span>
+          {isDecrypted && file.ext && <div className="ml-2 badge badge-accent">{file.ext}</div>}
         </h2>
 
         <div className="w-full grow">
           {file.state === ProcessState.ERROR && <FileError error={file.errorMessage} code={file.errorCode} />}
           {isDecrypted && (
-            <audio
-              className="max-w-[100%]"
-              aria-disabled={!file.decrypted}
-              controls
-              autoPlay={false}
-              src={file.decrypted}
-            />
+            <audio className="w-full" aria-disabled={!file.decrypted} controls autoPlay={false} src={file.decrypted} />
           )}
         </div>
 

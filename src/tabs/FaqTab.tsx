@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react';
+import { ComponentType, Fragment } from 'react';
 import { Header3 } from '~/components/HelpText/Headers';
 import { KuwoFAQ } from '~/faq/KuwoFAQ';
 import { OtherFAQ } from '~/faq/OtherFAQ';
@@ -8,7 +8,7 @@ import { KugouFAQ } from '~/faq/KugouFAQ.tsx';
 type FAQEntry = {
   id: string;
   title: string;
-  Help: FC;
+  Help: ComponentType;
 };
 
 const faqEntries: FAQEntry[] = [
@@ -20,10 +20,10 @@ const faqEntries: FAQEntry[] = [
 
 export function FaqTab() {
   return (
-    <section className="container pb-10">
+    <section className="container pb-10 px-4">
       <h2 className="text-3xl font-bold text-center">常见问题解答</h2>
       <Header3>答疑目录</Header3>
-      <ul className="list-disc list-inside">
+      <ul className="list-disc pl-6">
         {faqEntries.map(({ id, title }) => (
           <li key={id}>
             <a className="link link-info no-underline" href={`#faq-${id}`}>

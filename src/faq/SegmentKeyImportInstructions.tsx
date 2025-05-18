@@ -16,7 +16,7 @@ export function SegmentKeyImportInstructions({
 }: SegmentKeyImportInstructionsProps) {
   return (
     <>
-      <p>导入密钥可以参考下面的步骤：</p>
+      <p className="mt-2">导入密钥可以参考下面的步骤：</p>
       <ol className="list-decimal pl-5">
         <li>
           <SegmentTopNavSettings />
@@ -28,7 +28,7 @@ export function SegmentKeyImportInstructions({
           <SegmentAddKeyDropdown />
         </li>
         <li>
-          <p>{keyInstructionText}</p>
+          <p className="mb-2">{keyInstructionText}</p>
           {clientInstructions}
         </li>
       </ol>

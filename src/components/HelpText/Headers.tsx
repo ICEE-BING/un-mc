@@ -8,7 +8,7 @@ export interface HeaderProps {
 
 export function Header3({ children, className, id }: HeaderProps) {
   return (
-    <h3 id={id} className={`text-2xl pt-3 pb-1 font-bold border-b border-base-300 text-neutral-800 ${className}`}>
+    <h3 id={id} className={`text-2xl pt-3 pb-1 font-bold border-b border-base-300 ${className}`}>
       {children}
     </h3>
   );
@@ -16,7 +16,7 @@ export function Header3({ children, className, id }: HeaderProps) {
 
 export function Header4({ children, className, id }: HeaderProps) {
   return (
-    <h4 id={id} className={`text-xl pt-3 pb-1 font-semibold text-neutral-800 ${className}`}>
+    <h4 id={id} className={`text-xl pt-3 pb-1 font-semibold ${className}`}>
       {children}
     </h4>
   );
@@ -24,7 +24,7 @@ export function Header4({ children, className, id }: HeaderProps) {
 
 export function Header5({ children, className, id }: HeaderProps) {
   return (
-    <h5 id={id} className={`text-lg pt-3 pb-1 font-semibold text-neutral-800 ${className}`}>
+    <h5 id={id} className={`text-lg pt-3 pb-1 font-semibold ${className}`}>
       {children}
     </h5>
   );

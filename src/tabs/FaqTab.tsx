@@ -8,8 +8,8 @@ export function FaqTab() {
     <div className="flex flex-col flex-1 container w-full">
       <ResponsiveNav
         className="grow h-full overflow-auto"
-        contentClassName="flex flex-col overflow-auto pl-6"
-        navigationClassName="overflow-x-auto pb-[2px] md:pb-0 h-full md:items-center [&]:md:flex"
+        contentClassName="flex flex-col overflow-auto px-8"
+        navigationClassName="overflow-x-auto pb-[2px] md:pb-0 h-full md:items-start [&]:md:flex"
         navigation={
           <div role="tablist" className="tabs gap-1 flex-nowrap md:flex-col grow items-center">
             {FAQ_PAGES.map(({ id, name }) => (

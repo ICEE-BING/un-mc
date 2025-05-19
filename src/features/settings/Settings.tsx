@@ -32,7 +32,7 @@ export function Settings() {
       <ResponsiveNav
         className="grow h-full overflow-auto"
         contentClassName="flex flex-col overflow-auto"
-        navigationClassName="overflow-x-auto pb-[2px] md:pb-0 h-full md:items-center [&]:md:flex"
+        navigationClassName="overflow-x-auto pb-[2px] md:pb-0 h-full items-start [&]:md:flex"
         navigation={
           <div role="tablist" className="tabs gap-1 flex-nowrap md:flex-col grow items-center">
             {Object.entries(SETTINGS_TABS).map(([id, { name }]) => (

@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { commitStagingChange, discardStagingChanges } from './settingsSlice';
 import { selectIsSettingsNotSaved } from './settingsSelector';
-import { NavLink, Outlet } from 'react-router';
+import { Outlet } from 'react-router';
 import { SETTINGS_TABS } from '~/features/settings/settingsTabs.tsx';
 import { MdOutlineSettingsBackupRestore } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { ResponsiveNav } from '../nav/ResponsiveNav';
-import classNames from 'classnames';
+import { TabNavLink } from '../nav/TabNavLink';
 
 export function Settings() {
   const dispatch = useAppDispatch();
@@ -27,16 +27,6 @@ export function Settings() {
   };
   const isSettingsNotSaved = useAppSelector(selectIsSettingsNotSaved);
 
-  const tabClassNames = ({ isActive }: { isActive: boolean }) =>
-    classNames(
-      'link inline-flex text-nowrap mb-[-2px] no-underline w-full',
-      'border-b-2 md:border-b-0 md:border-r-2',
-      'tab md:grow',
-      {
-        'tab-active bg-accent/10 border-accent': isActive,
-      },
-    );
-
   return (
     <div className="flex flex-col flex-1 container w-full">
       <ResponsiveNav
@@ -46,9 +36,9 @@ export function Settings() {
         navigation={
           <div role="tablist" className="tabs gap-1 flex-nowrap md:flex-col grow items-center">
             {Object.entries(SETTINGS_TABS).map(([id, { name }]) => (
-              <NavLink className={tabClassNames} key={id} to={`/settings/${id}`} role="tab">
+              <TabNavLink key={id} to={`/settings/${id}`}>
                 {name}
-              </NavLink>
+              </TabNavLink>
             ))}
           </div>
         }

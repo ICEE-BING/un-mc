@@ -13,6 +13,8 @@ import { FaqTab } from '~/tabs/FaqTab';
 import { SETTINGS_TABS } from '~/features/settings/settingsTabs';
 import { Bounce, ToastContainer } from 'react-toastify';
 import { SettingsHome } from '~/features/settings/SettingsHome';
+import { FAQ_PAGES } from '~/faq/FAQPages';
+import { FaqHome } from '~/faq/FaqHome';
 
 // Private to this file only.
 const store = setupStore();
@@ -49,7 +51,12 @@ export function AppRoot() {
                 <Route key={key} path={key} Component={Tab} />
               ))}
             </Route>
-            <Route path="/questions" Component={FaqTab} />
+            <Route path="/questions" Component={FaqTab}>
+              <Route index Component={FaqHome} />
+              {FAQ_PAGES.map(({ id, Component }) => (
+                <Route key={id} path={id} Component={Component} />
+              ))}
+            </Route>
           </Routes>
         </main>
 

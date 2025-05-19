@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { Fragment, useId } from 'react';
 
 export type InstructionTab = {
@@ -8,19 +9,24 @@ export type InstructionTab = {
 
 export interface InstructionsTabsProps {
   tabs: InstructionTab[];
+  limitHeight?: boolean;
 }
 
-export function InstructionsTabs({ tabs }: InstructionsTabsProps) {
+export function InstructionsTabs({ limitHeight = false, tabs }: InstructionsTabsProps) {
   const id = useId();
   return (
-    <div className="tabs tabs-lift max-h-[32rem] pb-4">
+    <div className={classNames('tabs tabs-lift pb-4', { 'max-h-[32rem]': limitHeight })}>
       {tabs.map(({ id: _tabId, label, content }, index) => (
         <Fragment key={_tabId}>
           <label className="tab">
             <input type="radio" name={id} defaultChecked={index === 0} />
             {label}
           </label>
-          <div className="tab-content border-base-300 bg-base-100 px-4 py-2 overflow-y-auto max-h-[30rem]">
+          <div
+            className={classNames('tab-content border-base-300 bg-base-100 px-4 py-2 overflow-y-auto', {
+              'max-h-[30rem]': limitHeight,
+            })}
+          >
             {content}
           </div>
         </Fragment>

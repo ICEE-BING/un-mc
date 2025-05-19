@@ -4,7 +4,7 @@ import { InstructionsMac } from './InstructionsMac';
 import { InstructionsPC } from './InstructionsPC';
 import { InstructionsTabs, InstructionTab } from '~/components/InstructionsTabs.tsx';
 
-export function QMCv2QQMusicAllInstructions() {
+export function QMCv2QQMusicAllInstructions({ limitHeight }: { limitHeight?: boolean }) {
   const tabs: InstructionTab[] = [
     {
       id: 'android',
@@ -16,5 +16,5 @@ export function QMCv2QQMusicAllInstructions() {
     { id: 'windows', label: 'Windows', content: <InstructionsPC /> },
   ];
 
-  return <InstructionsTabs tabs={tabs} />;
+  return <InstructionsTabs tabs={tabs} limitHeight={limitHeight} />;
 }

@@ -40,7 +40,6 @@ export default defineConfig({
       ],
     },
   },
-  base: './',
   optimizeDeps: {
     exclude: ['@unlock-music/crypto', 'sql.js'],
   },

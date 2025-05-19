@@ -43,6 +43,8 @@ export function PanelKWMv2Key() {
         酷我安卓版本的「臻品音质」已经换用 V2 版，表现为加密文件的后缀名为 <code>mflac</code> 或 <code>mgg</code>。
       </p>
       <p>该格式需要提取密钥后才能正常解密。</p>
+
+      <h3 className="mt-2 text-xl font-bold">密钥管理</h3>
       <AddKey
         addKey={addKey}
         refContainer={refKeyContainer}

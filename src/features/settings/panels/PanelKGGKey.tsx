@@ -43,7 +43,7 @@ export function PanelKGGKey() {
     <div className="container flex flex-col grow min-h-0 w-full">
       <h2 className="text-2xl font-bold">酷狗解密密钥 (KGG / KGM v5)</h2>
 
-      <p>酷狗已经升级了加密方式，现在使用 KGG / KGM v5 加密。</p>
+      <p>酷狗已经升级了加密方式，现在最新版本的客户端使用 KGG / KGM v5 加密。</p>
 
       <h3 className="mt-2 text-xl font-bold">密钥管理</h3>
       <AddKey

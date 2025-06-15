@@ -1,5 +1,7 @@
 import { DecryptedAudioFile, selectFiles } from '~/features/file-listing/fileListingSlice';
+import { FaDownload } from 'react-icons/fa';
 import { useAppSelector } from '~/hooks';
+import { toast } from 'react-toastify';
 
 export function DownloadAll() {
   const files = useAppSelector(selectFiles);
@@ -11,6 +13,9 @@ export function DownloadAll() {
       dir = await window.showDirectoryPicker();
     } catch (e) {
       console.error(e);
+      if (e instanceof Error && e.name === 'AbortError') {
+        return;
+      }
     }
     for (const [_, file] of Object.entries(files)) {
       try {
@@ -21,10 +26,15 @@ export function DownloadAll() {
         }
         success++;
       } catch (e) {
-        console.error('下载失败: ' + file.fileName, e);
+        console.error(`下载失败: ${file.fileName}`, e);
+        toast.error(`出现错误: ${e}`);
       }
     }
-    alert('下载成功: ' + success + ',下载失败: ' + (filesLength - success));
+    if (success === filesLength) {
+      toast.success(`成功下载: ${success}/${filesLength}首`);
+    } else {
+      toast.error(`成功下载: ${success}/${filesLength}首`);
+    }
   };
 
   return (
@@ -34,21 +44,15 @@ export function DownloadAll() {
       onClick={onClickDownloadAll}
       title="下载全部"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 0 24 24" width="40px" fill="#e3e3e3">
-        <path d="M0 0h24v24H0z" fill="none" />
-        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-      </svg>
+      <FaDownload />
     </button>
   );
 }
 
 async function DownloadNew(dir: FileSystemDirectoryHandle, file: DecryptedAudioFile) {
-  const response = await fetch(file.decrypted);
-  const blob = await response.blob();
   const fileHandle = await dir.getFileHandle(file.cleanName + '.' + file.ext, { create: true });
   const writable = await fileHandle.createWritable();
-  await writable.write(blob);
-  await writable.close();
+  await fetch(file.decrypted).then((res) => res.body?.pipeTo(writable));
 }
 
 async function DownloadOld(file: DecryptedAudioFile) {

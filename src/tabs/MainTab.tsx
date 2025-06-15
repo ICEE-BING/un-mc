@@ -1,6 +1,5 @@
 import { RiErrorWarningLine } from 'react-icons/ri';
 import { SelectFile } from '../components/SelectFile';
-import { DownloadAll } from '~/components/DownloadAll';
 
 import { FileListing } from '~/features/file-listing/FileListing';
 import { useAppDispatch, useAppSelector } from '~/hooks.ts';
@@ -39,9 +38,6 @@ export function MainTab() {
 
         <div className="w-full mt-4">
           <FileListing />
-        </div>
-        <div>
-          <DownloadAll />
         </div>
       </div>
     </div>

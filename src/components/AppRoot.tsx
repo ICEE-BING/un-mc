@@ -15,6 +15,7 @@ import { Bounce, ToastContainer } from 'react-toastify';
 import { SettingsHome } from '~/features/settings/SettingsHome';
 import { FAQ_PAGES } from '~/faq/FAQPages';
 import { FaqHome } from '~/faq/FaqHome';
+import { DownloadAll } from '~/components/DownloadAll.tsx';
 
 // Private to this file only.
 const store = setupStore();
@@ -71,6 +72,7 @@ export function AppRoot() {
           transition={Bounce}
         />
 
+        <DownloadAll />
         <Footer />
       </Provider>
     </BrowserRouter>

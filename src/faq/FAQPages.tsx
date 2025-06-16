@@ -4,6 +4,7 @@ import { KuwoFAQ } from './KuwoFAQ';
 import { KugouFAQ } from './KugouFAQ';
 import { OtherFAQ } from './OtherFAQ';
 import { AndroidEmulatorFAQ } from './AndroidEmulatorFAQ';
+import { FAQAboutProject } from './FAQAbout';
 
 export type FAQEntry = {
   id: string;
@@ -17,4 +18,5 @@ export const FAQ_PAGES: FAQEntry[] = [
   { id: 'kugou', name: '酷狗音乐', Component: KugouFAQ },
   { id: 'android-emu', name: '安卓模拟器', Component: AndroidEmulatorFAQ },
   { id: 'other', name: '其它问题', Component: OtherFAQ },
+  { id: 'about', name: '关于项目', Component: FAQAboutProject },
 ];

@@ -1,9 +1,10 @@
 import { ExtLink } from '~/components/ExtLink';
+import { Header2 } from '~/components/HelpText/Headers';
 
 export function FaqHome() {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">答疑</h1>
+      <Header2>答疑</Header2>
       <p>从目录选择一项来查看相关说明。</p>
       <p>
         也欢迎造访

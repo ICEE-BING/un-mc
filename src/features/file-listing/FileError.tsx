@@ -13,7 +13,7 @@ const errorMap = new Map<string | null | DecryptErrorType, string>([
 
 const ERROR_TEMPLATE = `解密错误：{{summary}}
 
-详细信息：
+详细错误信息：
 \`\`\`text
 {{error}}
 \`\`\`
@@ -46,7 +46,7 @@ export function FileError({ error, code }: FileErrorProps) {
       {error && (
         <div className="collapse border-error border w-full text-left my-2 py-0">
           <input className="[&&&]:py-2 [&&&]:min-h-[1.5rem]" type="checkbox" />
-          <div className="collapse-title font-semibold text-center [&&&]:min-h-[1.5rem] [&&&]:py-2">详细信息</div>
+          <div className="collapse-title font-semibold text-center [&&&]:min-h-[1.5rem] [&&&]:py-2">详细错误信息</div>
           <div className="collapse-content text-sm overflow-hidden">
             <pre className="overflow-x-auto w-full">{error}</pre>
             <p className="mt-2 text-center">

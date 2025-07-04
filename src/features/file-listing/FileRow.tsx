@@ -15,7 +15,7 @@ export function FileRow({ id, file }: FileRowProps) {
   const decryptedName = file.cleanName + '.' + file.ext;
 
   return (
-    <div className="card bg-base-100 shadow-sm w-full md:w-[30%] " data-testid="file-row">
+    <div className="card bg-base-100 dark:bg-gray-700 shadow-sm w-full md:w-[30%] " data-testid="file-row">
       <div className="card-body items-center text-center px-2">
         <h2 className="card-title max-w-full whitespace-nowrap flex gap-0" data-testid="audio-meta-song-name">
           <span className="grow overflow-hidden text-ellipsis" title={decryptedName}>

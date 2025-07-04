@@ -15,17 +15,20 @@ export interface InstructionsTabsProps {
 export function InstructionsTabs({ limitHeight = false, tabs }: InstructionsTabsProps) {
   const id = useId();
   return (
-    <div className={classNames('tabs tabs-lift pb-4', { 'max-h-[32rem]': limitHeight })}>
+    <div className={classNames('tabs tabs-lift pb-4 mt-2', { 'max-h-[32rem]': limitHeight })}>
       {tabs.map(({ id: _tabId, label, content }, index) => (
         <Fragment key={_tabId}>
-          <label className="tab">
+          <label className="tab dark:[--tab-border-color:#555]">
             <input type="radio" name={id} defaultChecked={index === 0} />
             {label}
           </label>
           <div
-            className={classNames('tab-content border-base-300 bg-base-100 px-4 py-2 overflow-y-auto', {
-              'max-h-[30rem]': limitHeight,
-            })}
+            className={classNames(
+              'tab-content border-base-300 dark:border-[#555] bg-base-100 px-4 py-2 overflow-y-auto',
+              {
+                'max-h-[30rem]': limitHeight,
+              },
+            )}
           >
             {content}
           </div>

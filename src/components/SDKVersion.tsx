@@ -16,7 +16,7 @@ export function SDKVersion() {
 
   return (
     <>
-      <span className="btn btn-ghost inline-flex p-0 h-[1em]" onClick={() => refDialog.current?.showModal()}>
+      <span className="btn btn-ghost inline-flex p-0" onClick={() => refDialog.current?.showModal()}>
         <MdInfoOutline />
       </span>
 

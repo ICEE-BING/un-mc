@@ -4,7 +4,7 @@
 
 pushd "$(dirname "${BASH_SOURCE[0]}")/../"
 
-WRY_VER="0.1.1"
+WRY_VER="0.1.2"
 
 mkdir -p win64/{deps,dist}
 dl_file() {

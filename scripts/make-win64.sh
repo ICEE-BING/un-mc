@@ -26,8 +26,8 @@ ZIP_NAME="um-react-win64-${APP_VERSION}.zip"
     -r um-react.zip \
     -o "win64/dist/${EXE_NAME}"
 
-touch -d 1970-01-01T00:00:00Z "win64/dist/${EXE_NAME}"
-zip -9oX "win64/dist/${ZIP_NAME}" -- "win64/dist/${EXE_NAME}"
+touch -d 1980-01-01T00:00:00Z "win64/dist/${EXE_NAME}"
+zip -9oXj "win64/dist/${ZIP_NAME}" -- "win64/dist/${EXE_NAME}"
 echo "[Build OK] 'win64/dist/${ZIP_NAME}'."
 
 popd

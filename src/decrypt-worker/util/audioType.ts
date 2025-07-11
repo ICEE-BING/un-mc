@@ -24,3 +24,13 @@ export function isDataLooksLikeAudio(buffer: Uint8Array): boolean {
   detectResult.free();
   return ok;
 }
+
+export const AudioMimeType: { [key: string]: string } = {
+  mp3: 'audio/mpeg',
+  flac: 'audio/flac',
+  m4a: 'audio/mp4',
+  ogg: 'audio/ogg',
+  wma: 'audio/x-ms-wma',
+  wav: 'audio/x-wav',
+  dff: 'audio/x-dff',
+};

@@ -7,7 +7,8 @@ export function DownloadAll() {
   const files = useAppSelector(selectFiles);
   const onClickDownloadAll = async () => {
     console.time('DownloadAll'); //开始计时
-    if (Object.keys(files).length === 0) {
+    const fileCount = Object.keys(files).length;
+    if (fileCount === 0) {
       toast.warning('未添加文件');
       return;
     }
@@ -21,7 +22,6 @@ export function DownloadAll() {
 
     //过滤处理失败的文件
     const completeFiles = Object.values(files).filter((file) => file.state === ProcessState.COMPLETE);
-    const fileCount = Object.keys(files).length;
 
     //开始下载
     let dir: FileSystemDirectoryHandle | undefined;
@@ -35,33 +35,29 @@ export function DownloadAll() {
     }
     toast.warning('开始下载，请稍候');
 
-    let success = 0;
-    const promises: Promise<void>[] = [];
-    for (const [_, file] of Object.entries(completeFiles)) {
-      const promise = new Promise<void>((resolve, reject) => {
-        console.log(`开始下载: ${file.fileName}`);
-        const action = dir ? DownloadNew(dir, file) : DownloadOld(file);
-        action.then(
-          () => {
-            console.log(`成功下载: ${file.fileName}`);
-            success++;
-            resolve();
-          },
-          (e) => {
-            console.error(`下载失败: ${file.fileName}`, e);
-            toast.error(`出现错误: ${e}`);
-            reject(e);
-          },
-        );
-      });
-      promises.push(promise);
-    }
-    try {
-      await Promise.allSettled(promises);
-      toast.success(`成功下载: ${success}/${fileCount}首`);
-    } catch {
-      toast.warning(`成功下载: ${success}/${fileCount}首`);
-    }
+    const promises = Object.values(completeFiles).map(async (file) => {
+      console.log(`开始下载: ${file.fileName}`);
+      try {
+        if (dir) {
+          await DownloadNew(dir, file);
+        } else {
+          await DownloadOld(file);
+        }
+        console.log(`成功下载: ${file.fileName}`);
+      } catch (e) {
+        console.error(`下载失败: ${file.fileName}`, e);
+        toast.error(`出现错误: ${e}`);
+        throw e;
+      }
+    });
+    await Promise.allSettled(promises).then((f) => {
+      const success = f.filter((result) => result.status === 'fulfilled').length;
+      if (success === fileCount) {
+        toast.success(`成功下载: ${success}/${fileCount}首`);
+      } else {
+        toast.warning(`成功下载: ${success}/${fileCount}首`);
+      }
+    });
     console.timeEnd('DownloadAll'); //停止计时
   };
 

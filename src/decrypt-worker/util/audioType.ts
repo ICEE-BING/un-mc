@@ -25,7 +25,7 @@ export function isDataLooksLikeAudio(buffer: Uint8Array): boolean {
   return ok;
 }
 
-export const AudioMimeType: { [key: string]: string } = {
+const AudioMimeType: Record<string, string> = {
   mp3: 'audio/mpeg',
   flac: 'audio/flac',
   m4a: 'audio/mp4',
@@ -34,3 +34,7 @@ export const AudioMimeType: { [key: string]: string } = {
   wav: 'audio/x-wav',
   dff: 'audio/x-dff',
 };
+
+export function getMimeTypeFromExt(ext: string) {
+  return AudioMimeType[ext] || 'application/octet-stream';
+}

@@ -62,12 +62,7 @@ export function DownloadAll() {
   };
 
   return (
-    <button
-      style={{ width: '48px', height: '48px', paddingInline: '0px', margin: '10px', marginLeft: 'auto' }}
-      className="btn btn-primary"
-      onClick={onClickDownloadAll}
-      title="下载全部"
-    >
+    <button className="btn btn-primary" id="downloadAll" onClick={onClickDownloadAll} title="下载全部">
       <FaDownload />
     </button>
   );

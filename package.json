@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
-    "@unlock-music/crypto": "0.1.10",
+    "@unlock-music/crypto": "^0.1.11",
     "classnames": "^2.5.1",
     "nanoid": "^5.1.5",
     "radash": "^12.1.1",

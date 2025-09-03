@@ -67,7 +67,7 @@ export function OtherFAQ() {
         </li>
         <li>
           <p>
-            <ExtLink className="mr-2" href="https://git.unlock-music.dev/um/um-react-wry">
+            <ExtLink className="mr-2" href="https://git.um-react.app/um/um-react-wry">
               <strong>
                 <code>um-react-wry</code>
               </strong>
@@ -79,7 +79,7 @@ export function OtherFAQ() {
           <ul className="list-disc pl-6">
             <li>
               <p>
-                <ExtLink href="https://git.unlock-music.dev/um/um-react/releases/latest">仓库下载</ExtLink>
+                <ExtLink href="https://git.um-react.app/um/um-react/releases/latest">仓库下载</ExtLink>
                 {' | 寻找文件名为 '}
                 <code>um-react-win64-</code> 开头的附件
               </p>

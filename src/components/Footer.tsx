@@ -6,14 +6,14 @@ export function Footer() {
   return (
     <footer className="flex flex-col text-center p-4 bg-base-200">
       <p className="flex flex-row justify-center items-center h-[1em]">
-        <a className="link link-info mr-1" href="https://git.unlock-music.dev/um/um-react">
+        <a className="link link-info mr-1" href="https://git.um-react.app/um/um-react">
           音乐解锁
         </a>
         (
         <a
           title="使用 MIT 授权协议"
           className="link link-info"
-          href="https://git.unlock-music.dev/um/um-react/src/branch/main/LICENSE"
+          href="https://git.um-react.app/um/um-react/src/branch/main/LICENSE"
         >
           MIT
         </a>
@@ -23,7 +23,7 @@ export function Footer() {
       <p>
         {'© 2019 - '}
         <CurrentYear />
-        <a className="ml-1 link link-info" href="https://git.unlock-music.dev/um">
+        <a className="ml-1 link link-info" href="https://git.um-react.app/um">
           Unlock Music
         </a>
       </p>

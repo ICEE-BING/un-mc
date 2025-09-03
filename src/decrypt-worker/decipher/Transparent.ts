@@ -3,7 +3,7 @@ import { DecipherInstance, DecipherOK, DecipherResult, Status } from '~/decrypt-
 export class TransparentDecipher implements DecipherInstance {
   cipherName = 'none';
 
-  async decrypt(buffer: Uint8Array): Promise<DecipherResult | DecipherOK> {
+  async decrypt(buffer: Uint8Array<ArrayBuffer>): Promise<DecipherResult | DecipherOK> {
     return {
       cipherName: 'None',
       status: Status.OK,

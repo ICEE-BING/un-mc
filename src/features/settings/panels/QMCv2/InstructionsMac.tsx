@@ -6,6 +6,8 @@ import { VQuote } from '~/components/HelpText/VQuote';
 import { MacCommandKey } from '~/components/Key/MacCommandKey';
 import { ShiftKey } from '~/components/Key/ShiftKey';
 
+import BlockUpdateScript from './assets/QQ 音乐 Mac 屏蔽升级.tar.gz?base64';
+
 const MAC_CLIENT_URL =
   'https://web.archive.org/web/20230903/https://dldir1.qq.com/music/clntupate/mac/QQMusicMac_Mgr.dmg';
 const MAC_CLIENT_TG_URL = 'https://t.me/um_lsr_ch/21';
@@ -42,6 +44,19 @@ export function InstructionsMac() {
           </ExtLink>
         </li>
       </ul>
+
+      <p className="mt-4">
+        有部分用户发现现在会强制更新。你可以下载
+        <ExtLink
+          className="link-info mx-1"
+          download="QQ 音乐 Mac 屏蔽升级.tar.gz"
+          href={`data:application/gzip;base64,${BlockUpdateScript}`}
+        >
+          QQ 音乐 Mac 屏蔽升级.tar.gz
+        </ExtLink>
+        ，然后执行 <code>QQ 音乐 Mac 屏蔽升级.command</code>。 其原理是修改 QQ
+        音乐的版本号，让其认为自己是最新版本，从而屏蔽更新。
+      </p>
 
       <p className="mt-4">密钥文件通常存储在下述路径：</p>
       <FilePathBlock>{DB_PATH}</FilePathBlock>

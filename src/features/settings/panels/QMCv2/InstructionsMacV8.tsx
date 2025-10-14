@@ -6,7 +6,11 @@ import { MacCommandKey } from '~/components/Key/MacCommandKey';
 import { ShiftKey } from '~/components/Key/ShiftKey';
 import { copyToClipboard } from '~/util/clipboard';
 
-import BlockUpdateScript from './assets/QQ 音乐 Mac 屏蔽升级.tar.gz?base64';
+import {
+  commandName as BLOCK_UPDATE_COMAND,
+  tarName as BLOCK_UPDATE_TAR_NAME,
+  tarball as BLOCK_UPDATE_BASE64,
+} from './assets/qqmusic_v8.8.0_patch_update.command?&name=QQ 音乐 Mac v8.8.0 屏蔽更新.command&mac-command';
 import { DownloadBase64 } from '~/components/DownloadBase64';
 import { useContext } from 'react';
 import { InSecretImportModalContext } from '~/context/InSecretImportModal';
@@ -38,9 +42,13 @@ export function InstructionsMacV8() {
 
       <p className="mt-4">
         部分用户可能会被强制要求更新。你可以下载
-        <DownloadBase64 filename="QQ 音乐 Mac v8.8.0 屏蔽升级.tar.gz" data={BlockUpdateScript}></DownloadBase64>
-        并执行 <code>QQ 音乐 Mac 屏蔽升级.command</code>。
+        <DownloadBase64 filename={BLOCK_UPDATE_TAR_NAME} data={BLOCK_UPDATE_BASE64}></DownloadBase64>
+        并执行 <code>{BLOCK_UPDATE_COMAND}</code>。
         <span>其原理是修改 QQ 音乐的版本号，让其认为自己是最新版本，从而达到屏蔽更新的效果。</span>
+      </p>
+      <p>
+        ※ 若是提示文件来自未知开发者，请右键点击该文件，选择菜单第一项
+        <VQuote>打开</VQuote>，在警告窗口再次选择<VQuote>打开</VQuote>。
       </p>
 
       <p className="mt-4">密钥文件通常存储在下述路径：</p>

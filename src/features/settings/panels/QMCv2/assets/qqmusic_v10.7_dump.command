@@ -8,6 +8,7 @@ import sys
 from argparse import ArgumentParser
 from dataclasses import dataclass
 from os import PathLike
+from os.path import dirname
 from pathlib import Path
 from struct import pack, unpack
 
@@ -154,13 +155,12 @@ def main():
         "-o",
         "--output",
         type=str,
-        help="Output directory for decrypted MMKV files (default: current directory)",
-        default=".",
+        help="Output directory for decrypted MMKV files (default: script directory)",
+        default=dirname(__file__),
     )
     parser.add_argument(
         "-v", "--verbose", action="store_true", help="Enable verbose output"
     )
-    parser.add_argument("--no-pause", action="store_true", help="Do not pause on exit")
     args = parser.parse_args()
 
     home_dir = Path.home()
@@ -182,7 +182,6 @@ def main():
 
     force = args.force
     verbose = args.verbose
-    no_pause = args.no_pause
 
     for plist_file in plists:
         if plist_file.exists() and plist_file.is_file():
@@ -208,9 +207,6 @@ def main():
                 except Exception as e:
                     print(f"Error writing decrypted mmkv: {e}", file=sys.stderr)
                     continue
-
-    if not no_pause:
-        input("Press Enter to exit...")
 
 
 if __name__ == "__main__":

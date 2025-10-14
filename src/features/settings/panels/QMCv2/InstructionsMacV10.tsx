@@ -39,10 +39,16 @@ export function InstructionsMacV10() {
           ，打开得到 <code>{DUMP_COMMAND_NAME}</code>。
         </li>
         <li>
-          双击运行 <code>{DUMP_COMMAND_NAME}</code>，如果提示访问目录，请允许其访问。
+          <p>
+            双击 <code>{DUMP_COMMAND_NAME}</code> 执行。
+          </p>
+          <p>
+            ※ 若是提示文件来自未知开发者，请右键点击该文件，选择菜单第一项
+            <VQuote>打开</VQuote>，在警告窗口再次选择<VQuote>打开</VQuote>。
+          </p>
         </li>
         <li>
-          运行后会在当前目录生成 <code>qqmusic-mac-*.mmkv</code> 文件，其中 <code>*</code> 是一串随机字符。
+          运行后会在脚本当前目录生成 <code>qqmusic-mac-*.mmkv</code> 文件，其中 <code>*</code> 是一串随机字符。
         </li>
         {inSecretImportModal ? (
           <li>

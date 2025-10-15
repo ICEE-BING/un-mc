@@ -5,7 +5,7 @@ export function Footer() {
   const appVersionShort = '__APP_VERSION_SHORT__';
   return (
     <footer className="flex flex-col text-center p-4 bg-base-200">
-      <p className="flex flex-row justify-center items-center h-[1em]">
+      <div className="flex flex-row justify-center items-center h-[1em]">
         <a className="link link-info mr-1" href="https://git.um-react.app/um/um-react">
           音乐解锁
         </a>
@@ -19,7 +19,7 @@ export function Footer() {
         </a>
         , v{appVersionShort}
         <SDKVersion />)
-      </p>
+      </div>
       <p>
         {'© 2019 - '}
         <CurrentYear />

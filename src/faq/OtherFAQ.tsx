@@ -16,7 +16,7 @@ export function OtherFAQ() {
       <div className="flex flex-col md:flex-row gap-2 md:gap-8">
         <div>
           <Header4>已知有问题的浏览器</Header4>
-          <ul className="list-disc list-inside pl-2">
+          <ul className="list-disc pl-8">
             <li>Via 浏览器</li>
             <li>夸克浏览器</li>
             <li>UC 浏览器</li>
@@ -25,7 +25,7 @@ export function OtherFAQ() {
 
         <div>
           <Header4>可能会遇到的问题包括</Header4>
-          <ul className="list-disc list-inside pl-2">
+          <ul className="list-disc pl-8">
             <li>网页白屏</li>
             <li>无法下载解密后内容</li>
             <li>下载的文件名错误</li>

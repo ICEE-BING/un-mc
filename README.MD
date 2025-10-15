@@ -19,7 +19,8 @@
 [`@unlock_music_chat`]: https://t.me/unlock_music_chat
 [um-react-actions]: https://git.um-react.app/um/um-react/actions?workflow=build.yaml
 
-⚠️ 手机端浏览器支持有限，请使用最新版本的 Chrome 或 Firefox 官方浏览器。
+> **WARNING**
+> 手机端浏览器支持有限，请使用最新版本的 Chrome 或 Firefox 官方浏览器。
 
 ## 支持的格式
 
@@ -31,27 +32,32 @@
   - Mac 客户端 (`.mflach` 等) [^qm-key-mac]
 - [x] 网易云音乐 (`.ncm`)
 - [x] 虾米音乐 (`.xm`)
-- [x] 酷我音乐 (`.kwm`)
+- [x] 酷我音乐 (`.kwm` / `.mflac`) [^kuwo-key-android]
 - [x] 酷狗音乐 (`.kgm` / `.vpr` / `.kgg`)
-  - PC / 安卓客户端的 `kgg` 文件需要提供密钥数据库。
+  - PC / 安卓客户端[^kgg-android]的 `kgg` 文件需要提供密钥数据库。
 - [x] 喜马拉雅 (`.x2m` / `.x3m` / `.xm`)
 - [x] 咪咕音乐格式 (`.mg3d`)
 - [x] 蜻蜓 FM (`.qta`)
-- [ ] ~~<ruby>QQ 音乐海外版<rt>JOOX Music</rt></ruby> (`.ofl_en`)~~
+  - 需要提取设备 ID。
 
-[^qm-key-pc]: PC 客户端仅支持 v19.43 或更低版本。
+[^qm-key-pc]: QQ 音乐的 PC 客户端仅支持 v19.51 或更低版本。
 
-[^qm-key-android]: 需要获取超级管理员权限后提取密钥数据库，并导入后使用。
+[^qm-key-android]: QQ 音乐的安卓客户端支持需要获取超级管理员权限后提取密钥数据库并导入后使用。
 
-[^qm-key-ios]: 需要越狱获取密钥数据库，或对设备进行完整备份后提取密钥数据库，并导入后使用。
+[^qm-key-ios]: QQ 音乐 iOS 客户端支持需要越狱获取密钥数据库，或对设备进行完整备份后提取密钥数据库并导入后使用。
 
-[^qm-key-mac]: 需要导入密钥数据库。
+[^qm-key-mac]: QQ 音乐 Mac 客户端支持需要导入密钥数据库，目前支持 v8.8.0 及 v10.7.1。
+
+[^kgg-android]: 酷狗音乐的安卓客户端支持需要获取超级管理员权限后提取密钥数据库并导入后使用。
+
+[^kuwo-key-android]: 酷我音乐的安卓客户端下载的 AI 升频文件需要获取超级管理员权限后提取密钥数据库并导入后使用。
 
 ## 错误报告
 
 有不支持的格式？请提交样本（加密文件）与客户端信息版本信息（如系统版本、下载渠道），或一并上传其安装包到[仓库的问题追踪区][project-issues]。
 
-⚠️ 如果文件太大，请上传到不需要登入下载的网盘，如 [mega.nz](https://mega.nz)、[OneDrive](https://www.onedrive.com/) 等。
+> **INFO**
+> 如果文件太大，请上传到不需要登入下载的网盘，如 [mega.nz](https://mega.nz)、[OneDrive](https://www.onedrive.com/) 等。
 
 遇到解密出错的情况，请一并携带错误信息（诊断信息）并简单描述错误的重现过程。
 
@@ -59,7 +65,7 @@
 
 [project-issues]: https://git.um-react.app/um/um-react/issues/new
 
-## 使用 Docker 构建、部署 (Linux)
+## 使用 Docker 构建、部署
 
 首先克隆仓库并进入目录：
 
@@ -86,13 +92,17 @@ docker run -d -p 8080:80 --name um-react um-react
 
 然后访问 `http://localhost:8080` 即可。
 
+> **INFO**
+> 项目不支持运行在子目录下。
+
 ## 开发相关
 
 从源码运行或编译生产版本，请参考文档「[新手上路](./docs/getting-started.zh.md)」。
 
 ### 解密库开发
 
-⚠️ 如果只是进行前端方面的更改，你可以跳过该节。
+> **INFO**
+> 如果只是进行前端方面的更改，你可以跳过该节。
 
 请参考文档「[面向 `@unlock-music/crypto` 开发](./docs/develop-with-um_crypto.zh.md)」。
 

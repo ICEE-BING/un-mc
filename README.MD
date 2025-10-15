@@ -10,7 +10,7 @@
 - CI 自动构建已经部署，可以在 [Actions][um-react-actions] 寻找对应的<ruby>构建产物<rp>(</rp><rt>Artifact</rt><rp>)</rp> </ruby>下载。
 - [常见问题参考](./docs/faq_zh-hans.md)
 
-> **WARNING**
+> [!WARNING]
 > 在本站 fork 不会起到备份的作用，只会浪费服务器储存空间。如无必要请勿 fork 该仓库。
 
 [授权协议]: https://git.um-react.app/um/um-react/src/branch/main/LICENSE
@@ -19,7 +19,7 @@
 [`@unlock_music_chat`]: https://t.me/unlock_music_chat
 [um-react-actions]: https://git.um-react.app/um/um-react/actions?workflow=build.yaml
 
-> **WARNING**
+> [!TIP]
 > 手机端浏览器支持有限，请使用最新版本的 Chrome 或 Firefox 官方浏览器。
 
 ## 支持的格式
@@ -56,7 +56,7 @@
 
 有不支持的格式？请提交样本（加密文件）与客户端信息版本信息（如系统版本、下载渠道），或一并上传其安装包到[仓库的问题追踪区][project-issues]。
 
-> **INFO**
+> [!NOTE]
 > 如果文件太大，请上传到不需要登入下载的网盘，如 [mega.nz](https://mega.nz)、[OneDrive](https://www.onedrive.com/) 等。
 
 遇到解密出错的情况，请一并携带错误信息（诊断信息）并简单描述错误的重现过程。
@@ -92,7 +92,7 @@ docker run -d -p 8080:80 --name um-react um-react
 
 然后访问 `http://localhost:8080` 即可。
 
-> **INFO**
+> [!NOTE]
 > 项目不支持运行在子目录下。
 
 ## 开发相关
@@ -101,7 +101,7 @@ docker run -d -p 8080:80 --name um-react um-react
 
 ### 解密库开发
 
-> **INFO**
+> [!TIP]
 > 如果只是进行前端方面的更改，你可以跳过该节。
 
 请参考文档「[面向 `@unlock-music/crypto` 开发](./docs/develop-with-um_crypto.zh.md)」。

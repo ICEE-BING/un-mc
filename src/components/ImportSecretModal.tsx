@@ -13,13 +13,12 @@ export interface ImportSecretModalProps {
 
 export function ImportSecretModal({ clientName, children, show, onClose, onImport }: ImportSecretModalProps) {
   const handleFileReceived = (files: File[]) => {
-    const promise = onImport(files[0]);
-    if (promise instanceof Promise) {
-      promise.catch((err) => {
+    const importResult = onImport(files[0]);
+    if (importResult instanceof Promise) {
+      importResult.catch((err) => {
         console.error('could not import: ', err);
       });
     }
-    return promise;
   };
 
   const refModel = useRef<HTMLDialogElement>(null);

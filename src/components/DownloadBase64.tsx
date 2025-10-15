@@ -7,7 +7,7 @@ export type DownloadBase64Props = {
   filename: string;
   mimetype?: string;
   className?: string;
-  icon?: boolean | ReactNode;
+  icon?: ReactNode | true | false;
   children?: ReactNode;
 };
 

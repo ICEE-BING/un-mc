@@ -2,7 +2,7 @@ import type { AnchorHTMLAttributes, ReactNode } from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 
 export type ExtLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
-  icon?: boolean | ReactNode;
+  icon?: ReactNode | true | false;
 };
 
 export function ExtLink({ className, icon = true, children, ...props }: ExtLinkProps) {

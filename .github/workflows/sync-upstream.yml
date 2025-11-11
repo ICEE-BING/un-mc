@@ -1,16 +1,17 @@
+---
 name: Sync from Upstream
 
 # This workflow automatically syncs changes from the upstream Gitea repository
 # at https://git.um-react.app/um/um-react to this GitHub mirror
 
-on:
+'on':
   # Run daily at 00:00 UTC
   schedule:
     - cron: '0 0 * * *'
-  
+
   # Allow manual triggering
   workflow_dispatch:
-  
+
   # Run on push to main branch to test the workflow
   push:
     branches:
@@ -19,37 +20,39 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for proper syncing
           token: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-      
+
       - name: Add upstream remote
         run: |
-          git remote add upstream https://git.um-react.app/um/um-react.git || true
-          git remote set-url upstream https://git.um-react.app/um/um-react.git
-      
+          upstream_url="https://git.um-react.app/um/um-react.git"
+          git remote add upstream "$upstream_url" || true
+          git remote set-url upstream "$upstream_url"
+
       - name: Fetch upstream changes
         run: |
           git fetch upstream
-      
+
       - name: Sync main branch
         run: |
           git checkout main
-          git merge upstream/main --no-edit --allow-unrelated-histories || {
+          if ! git merge upstream/main --no-edit \
+                  --allow-unrelated-histories; then
             echo "Merge conflict detected, attempting to resolve..."
             git merge --abort
             git reset --hard upstream/main
-          }
-      
+          fi
+
       - name: Push changes
         run: |
           git push origin main

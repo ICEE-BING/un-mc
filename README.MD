@@ -1,5 +1,12 @@
 # Unlock Music 音乐解锁 (React)
 
+> [!NOTE]
+> 这是一个 GitHub 镜像仓库，自动同步自上游 Gitea 仓库 [https://git.um-react.app/um/um-react](https://git.um-react.app/um/um-react)。
+> 同步通过 GitHub Actions 每日自动进行。
+>
+> This is a GitHub mirror repository that automatically syncs from the upstream Gitea repository [https://git.um-react.app/um/um-react](https://git.um-react.app/um/um-react).
+> Synchronization is performed automatically daily via GitHub Actions.
+
 [![Build Status](https://git.um-react.app/um/um-react/actions/workflows/build.yaml/badge.svg)][um-react-actions]
 
 - 在浏览器中解锁加密的音乐文件。 Unlock encrypted music file in the browser.

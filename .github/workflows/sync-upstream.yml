@@ -20,6 +20,8 @@ name: Sync from Upstream
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Need write permission to push changes
 
     steps:
       - name: Checkout repository
